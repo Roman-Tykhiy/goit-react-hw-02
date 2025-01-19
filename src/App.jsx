@@ -15,7 +15,7 @@ const App = () => {
   const [NewResults, setNewResults] = useState(() => {
     const saveFeedback = JSON.parse(localStorage.getItem(`feedback`)) 
     
-    if (saveFeedback.good > 0 || saveFeedback.neutral > 0 || saveFeedback.bad > 0) {
+    if (saveFeedback !== null) {
       return saveFeedback;
     }
     return Results;
