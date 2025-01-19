@@ -1,0 +1,28 @@
+.listItem {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 150px;
+
+}
+
+.img {
+    margin-top: 16px;
+}
+
+.text {
+    font-size: 28px;
+    margin-bottom: 0px;
+}
+
+.textStatusOn {
+    font-size: 20px;
+    color: green;
+}
+
+.textStatusOf {
+    font-size: 20px;
+    color: red;
+}
