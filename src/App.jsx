@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import Description from "./components/Description/Description";
 import Options from "./components/Options/Options";
-import Feedback from "./components/Feedback/Feedback";
-import { use } from "react";
+import Feedback from "./components/Feedback/Feedback"
 import Notification from "./components/Notification/Notification";
 
 const App = () => {
@@ -26,18 +25,8 @@ const App = () => {
       [feedbackType]: prev[feedbackType] + 1,
     }))
   };
-const totalFeedback = NewResults.good + NewResults.neutral + NewResults.bad;
-  const [isOpen, setIsOpen] = useState(true);
-  useEffect(() => {
-    if (totalFeedback === 0) {
-      setIsOpen(true)
-      return
-    };
-    setIsOpen(false)
-  }, [totalFeedback]);
- 
-  
-
+  const totalFeedback = NewResults.good + NewResults.neutral + NewResults.bad;
+  const positive = Math.round((NewResults.good / totalFeedback) * 100);
   const reset = () => {
     setNewResults(Results);
   }
@@ -50,12 +39,10 @@ const totalFeedback = NewResults.good + NewResults.neutral + NewResults.bad;
 <>
       <Description/>
       <Options updateFeedback={updateFeedback} reset={reset} total={totalFeedback}/>
-      {!isOpen&&<Feedback results={NewResults} total={totalFeedback} />}
-      {isOpen&&<Notification/>}
+      {(totalFeedback > 0)&&<Feedback results={NewResults} total={totalFeedback} positive={positive} />}
+      {(totalFeedback === 0)&&<Notification/>}
     </>
-    
-  )
-  
+  ) 
 };
 
 export default App;
